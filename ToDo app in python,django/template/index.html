@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+    <div class="row mt-4">
+    
+    <div class="col">
+    <h1> Add Items </h1>
+    <form action="{% url 'add_item' %}" method="POST" class="form-inline">
+    {% csrf_token %}
+    <input name="content" type="text" class="form-control" id="inlineFormInputName" placeholder="Book Title" >
+    <input name="author" type="text" class="form-control" id="inlineFormInputName" placeholder="Author Name" >
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    
+    </div>
+
+    <div class="row mt-4 ml-1">
+    <ul class="list-group">
+    {% for item in todo_items %}
+    
+    <li class="list-group-item bdr"><b>Book Tiltle:</b> {{item.text}}          <b>Book Author:</b> "{{item.author_name}}"
+    <form action="delete_todo/{{item.id}}" method="POST">
+    <div class="float-right ">
+       <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    </div>
+    
+    </form>
+    </li>
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock  %} 
+    
